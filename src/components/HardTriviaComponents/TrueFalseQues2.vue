@@ -1,8 +1,8 @@
 <template>
     <div dir="rtl" class="questionDesign">
         <div class="ques">{{trueFalseQues[index].question}}</div>
-        <div @click="clickAns(trueFalseQues[index].ans1)" :class="['ans', clicks && trueFalseQues[index].ans1 === trueFalseQues[index].correctAns ? 'right' : '' , trueFalseQues[index].ans1 === trueFalseQues[index].marked && trueFalseQues[index].ans1 !== trueFalseQues[index].correctAns ? 'wrong' : ''  ]">{{trueFalseQues[index].ans1}}</div>
-        <div @click="clickAns(trueFalseQues[index].ans2)" :class="['ans', clicks && trueFalseQues[index].ans2 === trueFalseQues[index].correctAns ? 'right' : '' , trueFalseQues[index].ans2 === trueFalseQues[index].marked && trueFalseQues[index].ans2 !== trueFalseQues[index].correctAns ? 'wrong' : '' ]">{{trueFalseQues[index].ans2}}</div>
+        <div @click="clickAns(trueFalseQues[index].ans1)" :class="['ans', clicks && trueFalseQues[index].ans1 === trueFalseQues[index].correctAns ? 'right' : '' , trueFalseQues[index].ans1 === trueFalseQues[index].marked && trueFalseQues[index].ans1 !== trueFalseQues[index].correctAns ? 'wrong' : '' , clicks ? 'avoid-clicks' : '' ]">{{trueFalseQues[index].ans1}}</div>
+        <div @click="clickAns(trueFalseQues[index].ans2)" :class="['ans', clicks && trueFalseQues[index].ans2 === trueFalseQues[index].correctAns ? 'right' : '' , trueFalseQues[index].ans2 === trueFalseQues[index].marked && trueFalseQues[index].ans2 !== trueFalseQues[index].correctAns ? 'wrong' : '' , clicks ? 'avoid-clicks' : '']">{{trueFalseQues[index].ans2}}</div>
     </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
             if(this.trueFalseQues[this.index].marked === this.trueFalseQues[this.index].correctAns) {
                 this.result = true;
             } else {
-                this.result = true;
+                this.result = false;
             }
             setTimeout(() => {
                 this.clicks = false;
@@ -87,6 +87,10 @@ export default {
 .wrong {
     background-image: url("@/assets/shortQuesIcons/falseBubbleIcon.png");
     color: #175C79;
+}
+
+.avoid-clicks {
+    pointer-events: none;
 }
 
 </style>

@@ -15,9 +15,6 @@ export default {
         };
     }, 
     methods : {
-        stop () {
-            clearInterval(this.time);
-        },
         continueTimer () {
             this.time = setInterval(() => {
             this.changeTime()}
@@ -31,6 +28,7 @@ export default {
         changeTime () {
             if(this.sec == 0 && this.min === 0) {
                 clearInterval(this.time);
+                this.$emit('time-out');
             } else if (this.sec == 0) {
                     this.sec = 59;
                     this.min--;
@@ -48,7 +46,7 @@ export default {
                     this.showMin = this.min;
             }
         }
-
+//לעשות פעולה ששולחת שהזמן נגמר
     },
     mounted() {
         this.showSec = '0'+this.sec;

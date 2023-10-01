@@ -1,12 +1,12 @@
 <template>
-    <div dir="rtl" class="questionDesign">
+    <div dir="rtl" class="questionDesign" :class="[!checkMarkAll ?'' : 'prevent-press']">
         <form>
             <div class="ques">{{numberQues[0].question}}</div>
             <br>
             <div class="container">
                 <div class="mini-container">
                     <label>{{numberQues[0].ans1}} {{space}}</label>
-                    <select v-model="order[0]" :class="['selectDesign' , !checkMarkAll ? '' : numberQues[0].correctAns[0]===order[0] ? 'right' : 'wrong']"  @click="check">
+                    <select v-model="order[0]" :class="['selectDesign' , !checkMarkAll ? '' : numberQues[0].correctAns[0]===order[0] ? 'right' : 'wrong']" @click="check">
                         <!-- ,numberQues[0].correctAns[0]===numberQues[0].marked[0] ? 'right' : 'wrong' -->
                         <!-- :disabled="marked" -->
                         <option class="selectNumberColorDesign" value="1">1</option>
@@ -17,7 +17,7 @@
                 </div>
                 <div class="mini-container">
                     <label>{{numberQues[0].ans2}} {{space}}</label>
-                    <select v-model="order[1]" :class="['selectDesign' , !checkMarkAll ? '' : numberQues[0].correctAns[1]===order[1] ? 'right' : 'wrong' ]"  @click="check" >
+                    <select v-model="order[1]" :class="['selectDesign' , !checkMarkAll ? '' : numberQues[0].correctAns[1]===order[1] ? 'right' : 'wrong']" @click="check">
                         <!-- ,numberQues[0].correctAns[1]===numberQues[0].marked[1] ? 'right' : 'wrong' -->
                         <!-- :disabled="marked" -->
                         <option class="selectNumberColorDesign" value="1">1</option>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="mini-container">
                     <label>{{numberQues[0].ans4}} {{space}}</label>
-                    <select v-model="order[3]" :class="['selectDesign' , !checkMarkAll ? '' : numberQues[0].correctAns[3]===order[3] ? 'right' : 'wrong']" @click="check" >
+                    <select v-model="order[3]" :class="['selectDesign' , !checkMarkAll ? '' : numberQues[0].correctAns[3]===order[3] ? 'right' : 'wrong']" @click="check">
                         <!-- , numberQues[0].correctAns[3]===numberQues[0].marked[3] ? 'right' : 'wrong' -->
                         <!-- :disabled="marked" -->
                         <option class="selectNumberColorDesign" value="1">1</option>
@@ -69,16 +69,19 @@ export default {
     }, 
     methods : {
         check(){
-            if(this.checkMarkAll) {
+            setTimeout ( () => {
+                if(this.checkMarkAll) {
                 for(let i=0; i<4; i++) {
                     if(this.order[i] !== this.numberQues[0].correctAns[i]) {
                         this.result = false;
                     }
                 }
                 setTimeout(() => {
-                    this.$emit('finish', this.result)
+                    this.$emit('finish', this.result);
                 }, 1500);
             }
+            } , 1000)
+            
         },
     }, 
     computed: {
@@ -93,6 +96,11 @@ export default {
 </script>
 
 <style scoped>
+
+.prevent-press {
+    pointer-events: none;
+}
+
 .container {
     position: relative;
     margin-top: -1%;
@@ -188,12 +196,14 @@ label{
     color: black;
    background: #3bf35d;
    z-index: 10;
+   /*pointer-events: none;*/
 }
 
 .wrong {
     color: black;
     background: #fd82d2;
     z-index: 10;
+    /*pointer-events: none;*/
 }
 
 </style>

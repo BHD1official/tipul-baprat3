@@ -1,22 +1,31 @@
 <template>
-    <div class="text">
-        <div class="headline">צוער/ת יקר/ה,</div>
-        <div class="center">לפניך מבחן בנושא טיפול בפרט.</div>
-        <div class="center">במבחן יש 52 שאלות, מתוכן:  </div>
-        <ul class="list">
-            <li>שאלות אמריקאיות</li>
-            <li>שאלות נכון/ לא נכון</li>
-            <li>שאלת מספור פעולות</li>
-        </ul>
-        <div class="center"> ניתן לעבור לשאלה הבאה רק לאחר שענית על השאלה הנוכחית. ישנה אופציה לחזור אחורה לשאלות שכבר עשית.</div>
-        <div class="center">בסוף המבחן אפשר ללמוד מהטעויות. </div>
-         <div> ניתן להיבחן יותר פעם אחת.</div>
-    </div>
-    <div class="goodluck">בהצלחה!</div>
-    <div @click="startTest" class="startBtn">שנתחיל?</div>
+    <transition appear 
+    name="fade"
+    @before-enter= "beforeEnter"
+    @enter="enter">
+        <div>
+            <div class="text">
+                <div class="headline">צוער/ת יקר/ה,</div>
+                <div class="center">לפניך מבחן בנושא טיפול בפרט.</div>
+                <div class="center">במבחן יש 52 שאלות, מתוכן:  </div>
+                <ul class="list">
+                    <li>שאלות אמריקאיות</li>
+                    <li>שאלות נכון/ לא נכון</li>
+                    <li>שאלת מספור פעולות</li>
+                </ul>
+                <div class="center"> ניתן לעבור לשאלה הבאה רק לאחר שענית על השאלה הנוכחית. ישנה אופציה לחזור אחורה לשאלות שכבר עשית.</div>
+                <div class="center">בסוף המבחן אפשר ללמוד מהטעויות. </div>
+                 <div> ניתן להיבחן יותר פעם אחת.</div>
+            </div>
+            <div class="goodluck">בהצלחה!</div>
+            <div @click="startTest" class="startBtn">שנתחיל?</div>
+        </div>
+    </transition>
 </template>
 
 <script>
+import gsap from 'gsap'
+
 export default ({
     data() {
      return {
@@ -26,7 +35,19 @@ export default ({
     methods: {
         startTest () {
             this.$emit('start-test');
-        }
+        },
+        beforeEnter (el) {
+            el.style.transform = 'translateY(60px)';
+            el.style.opacity = 0;
+        },
+        enter (el, done) {
+            gsap.to(el, {
+            duration: 1,
+            y: 0, 
+            opacity: 1,
+            onComplete: done
+            })
+        },
     }
   })
 </script>

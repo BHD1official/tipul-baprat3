@@ -7,7 +7,7 @@
             <div class="container">
                 <div class="mini-container">
                     <label>{{numberQues[0].ans1}} {{space}}</label>
-                    <select v-model="order[0]" class="selectDesign" @click="check">
+                    <select v-model="order[0]" class="selectDesign" >
                         <option class="selectNumberColorDesign" value="1">1</option>
                         <option class="selectNumberColorDesign" value="2">2</option>
                         <option class="selectNumberColorDesign" value="3">3</option>
@@ -16,7 +16,7 @@
                 </div>
                 <div class="mini-container">
                     <label>{{numberQues[0].ans2}} {{space}}</label>
-                    <select v-model="order[1]" class="selectDesign"  @click="check">
+                    <select v-model="order[1]" class="selectDesign"  >
                         <option class="selectNumberColorDesign" value="1">1</option>
                         <option class="selectNumberColorDesign" value="2">2</option>
                         <option class="selectNumberColorDesign" value="3">3</option>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="mini-container">
                     <label>{{numberQues[0].ans3}} {{space}}</label>
-                    <select v-model="order[2]" class="selectDesign" @click="check">
+                    <select v-model="order[2]" class="selectDesign" >
                         <option class="selectNumberColorDesign" value="1">1</option>
                         <option class="selectNumberColorDesign" value="2">2</option>
                         <option class="selectNumberColorDesign" value="3">3</option>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="mini-container">
                     <label>{{numberQues[0].ans4}} {{space}}</label>
-                    <select v-model="order[3]" class="selectDesign" @click="check">
+                    <select v-model="order[3]" class="selectDesign" >
                         <option class="selectNumberColorDesign" value="1">1</option>
                         <option class="selectNumberColorDesign" value="2">2</option>
                         <option class="selectNumberColorDesign" value="3">3</option>
@@ -48,7 +48,7 @@
     </div>
     <!-- <div>תשובות נכונות : {{countT}}</div>
     <div>תשובות לא נכונות : {{countF}}</div> -->
-
+    <!-- @click="check" הורדתי את זה מהוי מודל -->
 </template>
 
 <script>
@@ -72,16 +72,17 @@ export default {
             this.$emit('go-back');
         },
         check(){
-            this.countT = 1;
-            if(this.checkMarkAll) {
+            // this.countT = 1;
+            // if(this.checkMarkAll) {
                 for(let i=0; i<4; i++) {
                     if(this.order[i] !== this.numberQues[0].correctAns[i]) {
                         this.countT = 0;
                     }
-                }
+                // }
             }
         }, 
         finished () {
+            this.check();
             this.$emit('submitTrivia', this.countT);
         }
     }, 
@@ -95,7 +96,7 @@ export default {
     },
     beforeMount () {
         this.order = this.numberQues[0].marked;
-        this.check();
+        // this.check();
     }
 }
 </script>

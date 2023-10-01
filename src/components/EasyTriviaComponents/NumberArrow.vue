@@ -4,8 +4,8 @@
     <div v-if="!showP" class="progress-bar" :style="{ background: 'radial-gradient(closest-side, rgb(130, 145, 194) 85%, transparent 80% 100%), conic-gradient(#cfd5f9 '+precent+'% , #96a6e4 0)'}"></div>
     </div>
     <div class="btns">
-        <img src="@/assets/easyTriviaIcons/backBtn.png" alt="back" id="back" :class="[moveBack? '' : 'hide', 'btn']" @click=" () => {moveBack ? previousQues() : ''}">
-        <img src="@/assets/easyTriviaIcons/forward.png" alt="next" id="next" :class="[moveNext ? '' : 'hide', 'btn']"  @click=" () => {moveNext ? nextQues():''}">        
+        <img src="@/assets/easyTriviaIcons/backBtn.png" alt="back" id="back" :class="[moveBack? 'btn-ani' : 'hide', 'btn']" @click=" () => {moveBack ? previousQues() : ''}">
+        <img src="@/assets/easyTriviaIcons/forward.png" alt="next" id="next" :class="[moveNext ? 'btn-ani' : 'hide', 'btn']"  @click=" () => {moveNext ? nextQues():''}">        
     </div>
 </template>
 
@@ -101,4 +101,27 @@ export default ({
     opacity: 0;
 }
 
+.btn-ani{
+    animation: enterAni 1s ease;
+ }
+ 
+ @keyframes enterAni {
+     0% {
+        opacity: 0;
+ 
+     }
+     100% {
+        opacity: 1;
+     }
+ }
+ 
+ @-webkit-keyframes enterAni {
+    0% {
+        opacity: 0;
+ 
+     }
+     100% {
+        opacity: 1;
+     }
+ }
 </style>

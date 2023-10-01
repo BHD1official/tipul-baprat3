@@ -1,12 +1,14 @@
 <template>
-    <div v-if="!showQues" >
-        <div class="headline">לחץ על שאלה להצגת התשובה</div>
-        <div class="questionDesign">
-            <div v-for="btn in sumQues" :key="btn" :class="['btn', checkAns[btn] ? 'right' : 'wrong']" @click="picked(btn)">{{btn}}</div>
+    <transition appear name="fade">
+        <div v-if="!showQues" >
+            <div class="headline">לחץ על שאלה להצגת התשובה</div>
+            <div class="questionDesign">
+                <div v-for="btn in sumQues" :key="btn" :class="['btn', checkAns[btn] ? 'right' : 'wrong']" @click="picked(btn)">{{btn}}</div>
+            </div>
         </div>
-    </div>
-    <ShowQuestion v-else :number="number" :lengthArray="lengthArray" :shortQuestions="shortQuestions" :longQuestions="longQuestions" :trueFalseQues="trueFalseQues" :numberQues="numberQues" @back="back"></ShowQuestion>
-    
+    </transition>
+
+    <ShowQuestion  v-if="showQues" :number="number" :lengthArray="lengthArray" :shortQuestions="shortQuestions" :longQuestions="longQuestions" :trueFalseQues="trueFalseQues" :numberQues="numberQues" @back="back"></ShowQuestion>
 </template>
 
 <script>
@@ -106,10 +108,30 @@ export default {
 
 .headline{
     font-size: 152%;
-    margin-top: 10%;
+    margin-top: 20%;
 }
 
 
+.fade-enter-active{
+    animation: fadeIn 2s ease;
+}
 
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 </style>

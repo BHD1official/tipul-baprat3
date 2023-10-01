@@ -1,14 +1,15 @@
 <template>
-    <div dir="rtl" class="questionDesign">
-        <NumberArrow :number="(count+1+startPoint)" :moveNext="longQuestions[this.count].marked != ''" :moveBack="true" @back="previousQues" @next="nextQues"></NumberArrow>
-        <div :class="[longQuestions[count].question.length >= 100 ? 'small' : 'large' , 'ques']">{{longQuestions[count].question}}</div> 
-        <div class="container">
-            <div @click="clickAns(longQuestions[count].ans1)" :class="['ans', longQuestions[count].ans1 === longQuestions[this.count].marked ? 'marked' : '' , count === 3 ? 'bigans' : '' , count === 17 ? 'ans34' : '']">{{longQuestions[count].ans1}}</div>
-            <div @click="clickAns(longQuestions[count].ans2)" :class="['ans', longQuestions[count].ans2 === longQuestions[this.count].marked ? 'marked' : '' , count === 3 ? 'bigans' : '' , count === 17 ? 'ans34' : '']">{{longQuestions[count].ans2}}</div>
-            <div v-if="count!=3" @click="clickAns(longQuestions[count].ans3)" :class="['ans', longQuestions[count].ans3 === longQuestions[this.count].marked ? 'marked' : '' , count === 17 ? 'ans34' : '']">{{longQuestions[count].ans3}}</div>
-            <div v-if="count!=3" @click="clickAns(longQuestions[count].ans4)" :class="['ans', longQuestions[count].ans4 === longQuestions[this.count].marked ? 'marked' : '' , count === 17 ? 'ans34' : '' ]">{{longQuestions[count].ans4}}</div>
+        <div dir="rtl" class="questionDesign">
+            <NumberArrow :number="(count+1+startPoint)" :moveNext="longQuestions[this.count].marked != ''" :moveBack="true" @back="previousQues" @next="nextQues"></NumberArrow>
+            <div :class="[longQuestions[count].question.length >= 100 ? 'small' : 'large' , 'ques']">{{longQuestions[count].question}}</div> 
+            <div class="container">
+                <div @click="clickAns(longQuestions[count].ans1)" :class="['ans', longQuestions[count].ans1 === longQuestions[this.count].marked ? 'marked' : '' , count === 3 ? 'bigans' : '' , count === 17 ? 'ans34' : '']">{{longQuestions[count].ans1}}</div>
+                <div @click="clickAns(longQuestions[count].ans2)" :class="['ans', longQuestions[count].ans2 === longQuestions[this.count].marked ? 'marked' : '' , count === 3 ? 'bigans' : '' , count === 17 ? 'ans34' : '']">{{longQuestions[count].ans2}}</div>
+                <div v-if="count!=3" @click="clickAns(longQuestions[count].ans3)" :class="['ans', longQuestions[count].ans3 === longQuestions[this.count].marked ? 'marked' : '' , count === 17 ? 'ans34' : '']">{{longQuestions[count].ans3}}</div>
+                <div v-if="count!=3" @click="clickAns(longQuestions[count].ans4)" :class="['ans', longQuestions[count].ans4 === longQuestions[this.count].marked ? 'marked' : '' , count === 17 ? 'ans34' : '' ]">{{longQuestions[count].ans4}}</div>
+            </div>
         </div>
-    </div>
+
     <!-- <div>תשובות נכונות : {{countT}}</div>
     <div>תשובות לא נכונות : {{countF}}</div> -->
 
@@ -16,6 +17,7 @@
 
 <script>
 import NumberArrow from '@/components/EasyTriviaComponents/NumberArrow.vue'
+import gsap from 'gsap'
 
 export default {
     props : ["count1","longQuestions","startPoint"],

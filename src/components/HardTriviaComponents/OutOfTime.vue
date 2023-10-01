@@ -1,58 +1,36 @@
 <template>
     <transition appear name="fade"
     @before-enter= "beforeEnter"
-    @enter="enter">    
-        <div v-if="stage === 0" class="questionDesign">
+    @enter="enter">
+        <div class="questionDesign">
+            <div class="text1">נגמר הזמן!</div>
             <div class="container-img">
                 <img class="answeredOn" src="@/assets/basic/answeredOn.png" alt="answeredOn">
             </div>
-            <div class="numberOfTrueAns">{{sumCorrectAns}}</div>
+            <div class="numberOfTrueAns">{{sumTrueAns}}</div>
             <div class="container-img">
                 <img class="ques" src="@/assets/basic/ques.png" alt="ques">
             </div>
             <div class="container">
-                <div id="tryAgain" class="btn" @click="tryAgain">אני רוצה לנסות שוב</div>
-                <div id="learn" class="btn" @click="learn">בא לי ללמוד מהטעויות שלי!</div>
+                <div class="btn" @click="tryAgain">שחק שוב</div>
             </div>
         </div>
     </transition>
 
-    <pickQuestion v-if="stage === 1" :sumQues="sumQues" :lengthArray="lengthArray" :shortQuestions="shortQuestions" :longQuestions="longQuestions" :trueFalseQues="trueFalseQues" :numberQues="numberQues"></pickQuestion>
-
 </template>
 
 <script>
-import PickQuestion from '@/components/EasyTriviaComponents/PickQuestion.vue'
 import gsap from 'gsap'
 
 export default {
-    props : ["sumTrueAns","lengthArray", "shortQuestions", "longQuestions", "trueFalseQues", "numberQues"],
-    components: {
-        PickQuestion,
-    },
+    props : ["sumTrueAns"],
     data() {
         return {
-            sumCorrectAns : 0,
-            sumQues: 0,
-            stage : 0,
         };
     }, 
     methods : {
-        sumArray (arr) {
-            let sum = 0;
-            for(let i = 0; i<arr.length; i++) {
-                sum+=Number(arr[i]);
-            }
-            return sum;
-        },
         tryAgain () {
             this.$emit('try-again');
-        },
-        learn () {
-            this.stage++;
-        },
-        startTest () {
-            this.$emit('start-test');
         },
         beforeEnter (el) {
             el.style.transform = 'translateY(60px)';
@@ -66,12 +44,7 @@ export default {
             onComplete: done
             })
         },
-
     },
-    mounted() {
-        this.sumCorrectAns = this.sumArray(this.sumTrueAns);
-        this.sumQues = this.sumArray(this.lengthArray)+4;
-    }
 }
 </script>
 
@@ -101,7 +74,8 @@ export default {
 }
 
 .text1{
-    margin-top: 40%;
+    margin-top: 17%;
+    margin-bottom: 5%;
 }
 
 
@@ -112,17 +86,21 @@ export default {
     background-position-x: center;
     background-position-y: center;
     direction: rtl;
-    font-size: 32%;
-    padding: 9%;
+    font-size: 38%;
+    padding: 5%;
     width: 16%;
-    margin-top: 8%;
-    margin-right: 10%;
     display: flex;
+    justify-content: center;
+    align-self: center;
     align-items: center;
+    margin-top: 10%;
 }
 
 .container{
     display: flex;
+    width: 100%;
+    justify-content: center;
+
 }
 
 .answeredOn {
@@ -130,7 +108,6 @@ export default {
     height: 7.5rem;
     display: flex;
     margin-bottom: -7%;
-    margin-top: 15%;
 }
 
 .container-img {
@@ -142,5 +119,6 @@ export default {
     width: 12rem;
     height: 5.2rem;
 }
+
 
 </style>

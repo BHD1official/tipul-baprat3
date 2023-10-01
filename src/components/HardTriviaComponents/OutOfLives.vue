@@ -3,25 +3,22 @@
     @before-enter= "beforeEnter"
     @enter="enter">
         <div class="questionDesign">
-            <div class="container-img">
-                <img class="answeredOn" src="@/assets/basic/answeredOn.png" alt="answeredOn">
-            </div>
-            <div class="numberOfTrueAns">{{sumTrueAns}}</div>
-            <div class="container-img">
-                <img class="ques" src="@/assets/basic/ques.png" alt="ques">
-            </div>
+            <div class="text1">אופס!</div>
+            <div class="text2"> טעית ב3 שאלות</div>
+            <div class="text2">נסה שוב</div>
             <div class="container">
                 <div class="btn" @click="tryAgain">שחק שוב</div>
             </div>
         </div>
     </transition>
+
+
 </template>
 
 <script>
 import gsap from 'gsap'
 
 export default {
-    props : ["sumTrueAns"],
     data() {
         return {
         };
@@ -66,16 +63,19 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 6%;
+    padding: 5%;
     margin-top: 5%;
     margin-bottom: 5%;
-    font-size: 145%;
 }
 
 .text1{
     margin-top: 40%;
+    font-size: 150%;
 }
 
+.text2 {
+    font-size: 69%;
+}
 
 .btn {
     background-image: url("@/assets/shortQuesIcons/shortBubbleIcon.png");
@@ -84,9 +84,9 @@ export default {
     background-position-x: center;
     background-position-y: center;
     direction: rtl;
-    font-size: 38%;
     padding: 5%;
     width: 16%;
+    font-size: 38%;
     display: flex;
     justify-content: center;
     align-self: center;
@@ -99,24 +99,6 @@ export default {
     width: 100%;
     justify-content: center;
 
-}
-
-.answeredOn {
-    width: 16rem;
-    height: 7.5rem;
-    display: flex;
-    margin-bottom: -7%;
-    margin-top: 15%;
-}
-
-.container-img {
-    display: flex;
-    justify-content: center;
-}
-
-.ques {
-    width: 12rem;
-    height: 5.2rem;
 }
 
 </style>

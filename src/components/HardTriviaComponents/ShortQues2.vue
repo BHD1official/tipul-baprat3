@@ -1,6 +1,6 @@
 <template>
     <div dir="rtl" class="questionDesign">
-        <div :class="[shortQuestions[index].question.length >= 100 ? 'small' : 'large' , 'ques']"> {{shortQuestions[index].question}}</div>
+        <div :class="[shortQuestions[index].question.length >= 100 ? 'small' : 'large' , 'ques']">{{shortQuestions[index].question}}</div>
         <div class="container">
             <div @click="clickAns(shortQuestions[index].ans1)" :class="['ans', clicks && shortQuestions[index].ans1 === shortQuestions[index].correctAns ? 'right' : '' , shortQuestions[index].ans1 === shortQuestions[index].marked && shortQuestions[index].ans1 !== shortQuestions[index].correctAns ? 'wrong' : '' , clicks ? 'avoid-clicks' : '']"> {{shortQuestions[index].ans1}}</div>
             <div @click="clickAns(shortQuestions[index].ans2)" :class="['ans', clicks && shortQuestions[index].ans2 === shortQuestions[index].correctAns ? 'right' : '' , shortQuestions[index].ans2 === shortQuestions[index].marked && shortQuestions[index].ans2 !== shortQuestions[index].correctAns ? 'wrong' : '' , clicks ? 'avoid-clicks' : '']"> {{shortQuestions[index].ans2}}</div>

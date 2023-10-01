@@ -2,10 +2,10 @@
     <div dir="rtl" class="questionDesign">
         <div :class="[longQuestions[index].question.length >= 100 ? 'small' : 'large' , 'ques']">{{longQuestions[index].question}}</div> 
         <div class="container">
-            <div @click="clickAns(longQuestions[index].ans1)" :class="['ans', clicks && longQuestions[index].ans1 === longQuestions[index].correctAns ? 'right' : '' , longQuestions[index].ans1 === longQuestions[index].marked && longQuestions[index].ans1 !== longQuestions[index].correctAns ? 'wrong' : '' , index === 3 ? 'bigans' : '' , index === 17 ? 'ans34' : '']">{{longQuestions[index].ans1}}</div>
-            <div @click="clickAns(longQuestions[index].ans2)" :class="['ans', clicks && longQuestions[index].ans2 === longQuestions[index].correctAns ? 'right' : '' , longQuestions[index].ans2 === longQuestions[index].marked && longQuestions[index].ans2 !== longQuestions[index].correctAns ? 'wrong' : '' , index === 3 ? 'bigans' : '' , index === 17 ? 'ans34' : '']">{{longQuestions[index].ans2}}</div>
-            <div v-if="index!=3" @click="clickAns(longQuestions[index].ans3)" :class="['ans', clicks && longQuestions[index].ans3 === longQuestions[index].correctAns ? 'right' : '' , longQuestions[index].ans3 === longQuestions[index].marked && longQuestions[index].ans3 !== longQuestions[index].correctAns ? 'wrong' : '' , index === 17 ? 'ans34' : '']">{{longQuestions[index].ans3}}</div>
-            <div v-if="index!=3" @click="clickAns(longQuestions[index].ans4)" :class="['ans', clicks && longQuestions[index].ans4 === longQuestions[index].correctAns ? 'right' : '' , longQuestions[index].ans4 === longQuestions[index].marked && longQuestions[index].ans4 !== longQuestions[index].correctAns ? 'wrong' : ''  , index === 17 ? 'ans34' : '' ]">{{longQuestions[index].ans4}}</div>
+            <div @click="clickAns(longQuestions[index].ans1)" :class="['ans', clicks && longQuestions[index].ans1 === longQuestions[index].correctAns ? 'right' : '' , longQuestions[index].ans1 === longQuestions[index].marked && longQuestions[index].ans1 !== longQuestions[index].correctAns ? 'wrong' : '' , index === 3 ? 'bigans' : '' , index === 17 ? 'ans34' : '' , clicks ? 'avoid-clicks' : '']">{{longQuestions[index].ans1}}</div>
+            <div @click="clickAns(longQuestions[index].ans2)" :class="['ans', clicks && longQuestions[index].ans2 === longQuestions[index].correctAns ? 'right' : '' , longQuestions[index].ans2 === longQuestions[index].marked && longQuestions[index].ans2 !== longQuestions[index].correctAns ? 'wrong' : '' , index === 3 ? 'bigans' : '' , index === 17 ? 'ans34' : '' , clicks ? 'avoid-clicks' : '']">{{longQuestions[index].ans2}}</div>
+            <div v-if="index!=3" @click="clickAns(longQuestions[index].ans3)" :class="['ans', clicks && longQuestions[index].ans3 === longQuestions[index].correctAns ? 'right' : '' , longQuestions[index].ans3 === longQuestions[index].marked && longQuestions[index].ans3 !== longQuestions[index].correctAns ? 'wrong' : '' , index === 17 ? 'ans34' : '' , clicks ? 'avoid-clicks' : '']">{{longQuestions[index].ans3}}</div>
+            <div v-if="index!=3" @click="clickAns(longQuestions[index].ans4)" :class="['ans', clicks && longQuestions[index].ans4 === longQuestions[index].correctAns ? 'right' : '' , longQuestions[index].ans4 === longQuestions[index].marked && longQuestions[index].ans4 !== longQuestions[index].correctAns ? 'wrong' : ''  , index === 17 ? 'ans34' : '' , clicks ? 'avoid-clicks' : '' ]">{{longQuestions[index].ans4}}</div>
         </div>
     </div>
 </template>
@@ -129,6 +129,10 @@ export default {
 .wrong {
     background-image: url("@/assets/longQuesIcons/longFalseBubbleIcon.png");
     color: #175C79;
+}
+
+.avoid-clicks {
+    pointer-events: none;
 }
 
 </style>
